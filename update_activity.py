@@ -10,7 +10,7 @@ from typing import Any
 import requests
 
 
-GITHUB_USERNAME = os.getenv("GITHUB_USERNAME", "itsfourvn").strip()
+GITHUB_USERNAME = os.getenv("GITHUB_USERNAME", "itsfour").strip()
 ACCESS_TOKEN = os.getenv("ACCESS_TOKEN", "").strip()
 README_PATH = Path("README.md")
 START_MARKER = "<!--START_SECTION:activity-->"
