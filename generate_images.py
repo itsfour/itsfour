@@ -88,7 +88,7 @@ async def main() -> None:
     access_token = os.getenv("ACCESS_TOKEN")
     if not access_token:
         raise Exception("A personal access token is required to proceed!")
-    user = os.getenv("GITHUB_USERNAME", "itsfourvn").strip()
+    user = os.getenv("GITHUB_USERNAME", "itsfour").strip()
     if not user:
         raise RuntimeError("GITHUB_USERNAME must not be empty.")
     exclude_repos = os.getenv("EXCLUDED")
