@@ -515,7 +515,7 @@ async def main() -> None:
     Used mostly for testing; this module is not usually run standalone
     """
     access_token = os.getenv("ACCESS_TOKEN")
-    user = os.getenv("GITHUB_USERNAME", "itsfourvn").strip()
+    user = os.getenv("GITHUB_USERNAME", "itsfour").strip()
     if access_token is None or user is None:
         raise RuntimeError(
             "ACCESS_TOKEN and GITHUB_ACTOR environment variables cannot be None!"
