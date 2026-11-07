@@ -32,7 +32,7 @@ jobs:
       - name: Generate README data
         env:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-          GITHUB_USERNAME: itsfourvn
+          GITHUB_USERNAME: itsfour
           EXCLUDE_FORKED_REPOS: "true"
         run: |
           python generate_images.py
