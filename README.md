@@ -20,6 +20,14 @@
   <img src="./generated/languages.svg" width="49%" alt="Most used programming languages">
 </div>
 
+## 🦉 Duolingo progress
+
+<div align="center">
+  <a href="https://www.duolingo.com/profile/its.four_">
+    <img src="./generated/duolingo.svg" width="100%" alt="Duolingo streak, XP, and courses">
+  </a>
+</div>
+
 ## 🧩 Open-source contributions
 
 - [Vendicated/Vencord](https://github.com/Vendicated/Vencord)
