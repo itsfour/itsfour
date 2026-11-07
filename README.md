@@ -1,16 +1,35 @@
-### 📗 Contributions:
-<a href="https://osu.ppy.sh/users/Four"><img src="https://osu-sig.vercel.app/card?user=Four&mode=std&lang=en&mini=true" align="right"></a>
+<div align="center">
+  <h1>Hi, I'm itsfour 👋</h1>
+  <img src="./generated/itsfour.svg" width="420" alt="itsfour animated neon logo">
+  <p>
+    <a href="https://github.com/itsfour">
+      <img src="https://img.shields.io/badge/GitHub-itsfour-181717?style=for-the-badge&logo=github" alt="GitHub profile">
+    </a>
+    <a href="https://osu.ppy.sh/users/Four">
+      <img src="https://img.shields.io/badge/osu!-Four-FF66AA?style=for-the-badge&logo=osu!&logoColor=white" alt="osu! profile">
+    </a>
+  </p>
+</div>
+
+---
+
+## 📊 GitHub at a glance
+
+<div align="center">
+  <img src="./generated/overview.svg" width="49%" alt="GitHub statistics">
+  <img src="./generated/languages.svg" width="49%" alt="Most used programming languages">
+</div>
+
+## 🧩 Open-source contributions
 
 - [Vendicated/Vencord](https://github.com/Vendicated/Vencord)
 - [Team-BTMC/ppcounter-overlay](https://github.com/Team-BTMC/ppcounter-overlay)
 
-<img src="./generated/itsfour.svg" width="280" align="left" alt="itsfour animated name">
-<br clear="both">
-<div align="center">
-<img src="./generated/overview.svg"><img src="./generated/languages.svg">
-</div>
+## 🕘 Recent activity
 
-### 🕘 Recent activity:
+<details>
+  <summary>Show latest public GitHub activity</summary>
+
 <!--START_SECTION:activity-->
 1. 📦 Pushed [`14ca528`](https://github.com/itsfour/itsfour.github.io/commit/14ca5282277878cb10dcf75fdf10558caf38dc58) to [`main`] in [itsfour/itsfour.github.io](https://github.com/itsfour/itsfour.github.io)
 2. 📦 Pushed [`ce5f338`](https://github.com/itsfour/itsfour.github.io/commit/ce5f33812be3e094cd7525468067db3e10d88aa0) to [`main`] in [itsfour/itsfour.github.io](https://github.com/itsfour/itsfour.github.io)
@@ -38,3 +57,4 @@
 24. 📦 Pushed [`0c7b0da`](https://github.com/itsfour/Modified-APK/commit/0c7b0da9d3597e26c911e938477f3d686ef7d26b) to [`main`] in [itsfour/Modified-APK](https://github.com/itsfour/Modified-APK)
 25. 📦 Pushed [`7cfc2fa`](https://github.com/itsfour/Modified-APK/commit/7cfc2fa0670b39fd6c6221c8b7aaa4cd14702b19) to [`main`] in [itsfour/Modified-APK](https://github.com/itsfour/Modified-APK)
 <!--END_SECTION:activity-->
+</details>
