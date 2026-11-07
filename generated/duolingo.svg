@@ -1,32 +1,153 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="760" height="248" viewBox="0 0 760 248" role="img" aria-labelledby="title description">
-  <title id="title">Duolingo progress for its.four_</title>
-  <desc id="description">332 day streak, 56,120 total XP, and 2 courses.</desc>
-  <defs>
-    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#10241c"/>
-      <stop offset="1" stop-color="#101820"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="260" viewBox="0 0 800 260" role="img" aria-label="Duolingo profile card"><defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#16262d"/>
+      <stop offset="1" stop-color="#0e181d"/>
     </linearGradient>
-    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#a5ed38"/>
-      <stop offset="1" stop-color="#58cc02"/>
+    <linearGradient id="bar" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#58cc02"/>
+      <stop offset="1" stop-color="#9be22b"/>
     </linearGradient>
+    <linearGradient id="gem" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#84d8ff"/>
+      <stop offset="1" stop-color="#1cb0f6"/>
+    </linearGradient>
+    <clipPath id="card"><rect x="2" y="2" width="796" height="256" rx="26"/></clipPath>
   </defs>
-  <rect x="1" y="1" width="758" height="246" rx="22" fill="url(#background)" stroke="#2d4438" stroke-width="2"/>
-  <circle cx="76" cy="79" r="37" fill="url(#accent)"/>
-  <path d="M66 98V60h22c13 0 20 7 20 19s-7 19-20 19H66zm12-10h9c6 0 9-3 9-9s-3-9-9-9h-9v18z" fill="#12351d"/>
-  <text x="132" y="60" fill="#a5ed38" font-family="Segoe UI,Arial,sans-serif" font-size="13" font-weight="700" letter-spacing="2">DUOLINGO PROGRESS</text>
-  <text x="132" y="88" fill="#f3f7f4" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="700">@its.four_</text>
-  <line x1="132" y1="108" x2="718" y2="108" stroke="#304238"/>
-  <line x1="330" y1="126" x2="330" y2="195" stroke="#304238"/>
-  <line x1="527" y1="126" x2="527" y2="195" stroke="#304238"/>
-  <g font-family="Segoe UI,Arial,sans-serif">
-    <text x="150" y="148" fill="#a5ed38" font-size="30" font-weight="700">332</text>
-    <text x="150" y="174" fill="#9aaca1" font-size="12" font-weight="700" letter-spacing="1.5">DAY STREAK</text>
-    <text x="360" y="148" fill="#f3f7f4" font-size="30" font-weight="700">56,120</text>
-    <text x="360" y="174" fill="#9aaca1" font-size="12" font-weight="700" letter-spacing="1.5">TOTAL XP</text>
-    <text x="557" y="148" fill="#f3f7f4" font-size="30" font-weight="700">2</text>
-    <text x="557" y="174" fill="#9aaca1" font-size="12" font-weight="700" letter-spacing="1.5">COURSES</text>
+
+  <style>
+    text { font-family: "Nunito", "Segoe UI", "Helvetica Neue", Arial, sans-serif; }
+    .name { font-size: 30px; font-weight: 800; fill: #ffffff; }
+    .user { font-size: 15px; font-weight: 700; fill: #8a9aa3; }
+    .chip { font-size: 13px; font-weight: 800; fill: #ffffff; }
+    .label { font-size: 12px; font-weight: 800; fill: #8a9aa3; letter-spacing: 1px; }
+    .num { font-size: 26px; font-weight: 800; }
+    .goal { font-size: 13px; font-weight: 800; fill: #58cc02; }
+
+    .bob { animation: bob 3s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+    @keyframes bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+
+    .blink { animation: blink 4s infinite; transform-box: fill-box; transform-origin: center; }
+    @keyframes blink { 0%,92%,100% { transform: scaleY(1); } 95% { transform: scaleY(0.08); } }
+
+    .wingL { animation: flapL 1.6s ease-in-out infinite; transform-box: fill-box; transform-origin: 100% 20%; }
+    .wingR { animation: flapR 1.6s ease-in-out infinite; transform-box: fill-box; transform-origin: 0% 20%; }
+    @keyframes flapL { 0%,100% { transform: rotate(0); } 50% { transform: rotate(-18deg); } }
+    @keyframes flapR { 0%,100% { transform: rotate(0); } 50% { transform: rotate(18deg); } }
+
+    .flame { animation: flicker 0.9s ease-in-out infinite; transform-box: fill-box; transform-origin: 50% 100%; }
+    @keyframes flicker { 0%,100% { transform: scale(1,1) rotate(0); } 33% { transform: scale(1.08,1.12) rotate(-3deg); } 66% { transform: scale(0.95,1.05) rotate(3deg); } }
+
+    .bolt { animation: zap 2s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+    @keyframes zap { 0%,100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.15); opacity: .85; } }
+
+    .gemspin { animation: pulse 2.4s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+    @keyframes pulse { 0%,100% { transform: scale(1) rotate(0); } 50% { transform: scale(1.12) rotate(6deg); } }
+
+    .card { animation: rise 0.9s cubic-bezier(.2,.9,.3,1.2) both; }
+    .c2 { animation-delay: .15s; } .c3 { animation-delay: .3s; }
+    @keyframes rise { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+    .float { animation: drift 7s ease-in-out infinite; }
+    .f2 { animation-duration: 9s; animation-delay: -3s; } .f3 { animation-duration: 11s; animation-delay: -6s; }
+    @keyframes drift { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-14px); } }
+
+    .shine { animation: sweep 3.5s ease-in-out infinite; }
+    @keyframes sweep { 0% { transform: translateX(-120px); } 60%,100% { transform: translateX(560px); } }
+  </style>
+
+  <!-- Card -->
+  <rect x="2" y="2" width="796" height="256" rx="26" fill="url(#bg)" stroke="#2f4550" stroke-width="3"/>
+
+  <g clip-path="url(#card)">
+    <!-- floating background bubbles -->
+    <circle class="float" cx="650" cy="40" r="46" fill="#58cc02" opacity=".07"/>
+    <circle class="float f2" cx="190" cy="225" r="30" fill="#1cb0f6" opacity=".08"/>
+    <circle class="float f3" cx="500" cy="215" r="22" fill="#ffc800" opacity=".08"/>
+    <circle class="float f2" cx="30" cy="40" r="26" fill="#ce82ff" opacity=".08"/>
   </g>
-  <circle cx="43" cy="218" r="4" fill="#58cc02"/>
-  <text x="56" y="223" fill="#c6d2ca" font-family="Segoe UI,Arial,sans-serif" font-size="13">English · Chinese (Simplified)</text>
+
+  <!-- Mascot (original green bird) -->
+  <g transform="translate(112,120)">
+    <ellipse cx="0" cy="88" rx="52" ry="8" fill="#000" opacity=".25"/>
+    <g class="bob">
+      <!-- feet -->
+      <path d="M-26 70 q-10 14 -22 12 q8 -4 6 -12z M26 70 q10 14 22 12 q-8 -4 -6 -12z" fill="#ff9600"/>
+      <!-- wings -->
+      <ellipse class="wingL" cx="-62" cy="14" rx="16" ry="36" fill="#46a302"/>
+      <ellipse class="wingR" cx="62" cy="14" rx="16" ry="36" fill="#46a302"/>
+      <!-- tufts -->
+      <path d="M-40 -52 L-52 -82 L-22 -62z M40 -52 L52 -82 L22 -62z" fill="#58cc02"/>
+      <!-- body -->
+      <ellipse cx="0" cy="8" rx="60" ry="68" fill="#58cc02"/>
+      <ellipse cx="0" cy="30" rx="38" ry="42" fill="#a5e84a"/>
+      <!-- eyes -->
+      <g class="blink">
+        <circle cx="-24" cy="-18" r="21" fill="#fff"/>
+        <circle cx="24" cy="-18" r="21" fill="#fff"/>
+        <circle cx="-20" cy="-16" r="9" fill="#131f24"/>
+        <circle cx="28" cy="-16" r="9" fill="#131f24"/>
+        <circle cx="-17" cy="-20" r="3" fill="#fff"/>
+        <circle cx="31" cy="-20" r="3" fill="#fff"/>
+      </g>
+      <!-- beak -->
+      <path d="M-11 0 Q0 -6 11 0 Q8 14 0 18 Q-8 14 -11 0z" fill="#ffc800"/>
+    </g>
+  </g>
+
+  <!-- Name & info -->
+  <text class="name" x="215" y="70" textLength="280" lengthAdjust="spacingAndGlyphs">Phạm Huyền Thiên Tứ</text>
+  <text class="user" x="215" y="95">@its.four_  ·  Joined Jul 2026</text>
+
+  <rect x="215" y="112" width="86" height="28" rx="14" fill="#58cc02"/><text class="chip" x="258" y="131" text-anchor="middle" textLength="74" lengthAdjust="spacingAndGlyphs"><title>English</title>English</text>
+    <rect x="309" y="112" width="92" height="28" rx="14" fill="#1cb0f6"/><text class="chip" x="355" y="131" text-anchor="middle" textLength="80" lengthAdjust="spacingAndGlyphs"><title>Chinese (Simplified)</title>Chinese (…</text>
+
+  <!-- Daily goal progress -->
+  <text class="goal" x="215" y="182">ENGLISH COURSE XP</text>
+  <text class="goal" x="776" y="182" text-anchor="end" style="fill:#8a9aa3">36,762 XP · 66% OF TOTAL</text>
+  <rect x="215" y="192" width="561" height="16" rx="8" fill="#2a3b44"/>
+  <g>
+    <rect x="215" y="192" width="0" height="16" rx="8" fill="url(#bar)">
+      <animate attributeName="width" values="0;367.5;367.5" keyTimes="0;0.35;1" dur="6s" repeatCount="indefinite" calcMode="spline" keySplines=".2 .8 .2 1;0 0 1 1"/>
+    </rect>
+    <rect x="215" y="192" width="561" height="16" rx="8" fill="none"/>
+  </g>
+
+  <!-- Stat cards -->
+  <!-- Streak -->
+  <g class="card">
+    <rect x="522" y="34" width="78" height="124" rx="18" fill="#1d2f38" stroke="#2f4550" stroke-width="2"/>
+    <g class="flame">
+      <path d="M561 52 C 574 66 582 74 582 88 A 21 21 0 0 1 540 88 C 540 80 545 74 549 70 C 549 78 553 80 556 80 C 554 68 556 60 561 52z" fill="#ff9600"/>
+      <path d="M561 76 C 569 84 572 88 572 94 A 11 11 0 0 1 550 94 C 550 90 553 86 556 84 C 557 88 559 88 560 88 C 559 83 560 80 561 76z" fill="#ffd34d"/>
+    </g>
+    <text class="num" x="561" y="130" text-anchor="middle" fill="#ff9600">332</text>
+    <text class="label" x="561" y="148" text-anchor="middle">STREAK</text>
+  </g>
+
+  <!-- XP -->
+  <g class="card c2">
+    <rect x="610" y="34" width="78" height="124" rx="18" fill="#1d2f38" stroke="#2f4550" stroke-width="2"/>
+    <g class="bolt">
+      <path d="M654 54 L634 90 H648 L643 112 L666 74 H651z" fill="#ffc800"/>
+    </g>
+    <text class="num" x="649" y="130" text-anchor="middle" fill="#ffc800">56.1k</text>
+    <text class="label" x="649" y="148" text-anchor="middle">TOTAL XP</text>
+  </g>
+
+  <!-- League -->
+  <g class="card c3">
+    <rect x="698" y="34" width="78" height="124" rx="18" fill="#1d2f38" stroke="#2f4550" stroke-width="2"/>
+    <g class="gemspin">
+      <path d="M737 54 L758 72 L737 112 L716 72z" fill="url(#gem)"/>
+      <path d="M716 72 H758 L737 54z" fill="#bff0ff" opacity=".7"/>
+      <path d="M737 72 L737 112" stroke="#fff" stroke-opacity=".35" stroke-width="2"/>
+    </g>
+    <text class="num" x="737" y="130" text-anchor="middle" fill="#1cb0f6" style="font-size:20px">Private</text>
+    <text class="label" x="737" y="148" text-anchor="middle">LEAGUE</text>
+  </g>
+
+  <!-- Shine sweep over bottom bar area -->
+  <g clip-path="url(#card)">
+    <rect class="shine" x="200" y="-10" width="50" height="280" fill="#fff" opacity=".04" transform="skewX(-20)"/>
+  </g>
 </svg>

@@ -1,17 +1,25 @@
-"""Generate a Duolingo profile card from its public user endpoint."""
+"""Generate the Duolingo profile card by filling its SVG template."""
 
 from __future__ import annotations
 
 import os
+import re
+from datetime import datetime, timezone
 from html import escape
 from pathlib import Path
 from typing import Any
 
 import requests
 
-
 API_URL = "https://www.duolingo.com/2017-06-30/users"
+TEMPLATE_PATH = Path("templates/duolingo.svg")
 OUTPUT_PATH = Path("generated/duolingo.svg")
+COURSE_CHIPS_PATTERN = re.compile(
+    r"<!-- COURSE_CHIPS_START -->.*?<!-- COURSE_CHIPS_END -->", re.DOTALL
+)
+SIGNED_METADATA_PATTERN = re.compile(
+    r"<metadata(?:\s[^>]*)?>.*?</metadata>\s*", re.DOTALL
+)
 
 
 def fetch_profile(username: str) -> dict[str, Any]:
@@ -32,7 +40,7 @@ def fetch_profile(username: str) -> dict[str, Any]:
     profile = users[0]
     if str(profile.get("username", "")).casefold() != username.casefold():
         raise RuntimeError("Duolingo returned a profile with an unexpected username.")
-    for field in ("streak", "totalXp"):
+    for field in ("streak", "totalXp", "creationDate"):
         value = profile.get(field)
         if not isinstance(value, int) or isinstance(value, bool) or value < 0:
             raise RuntimeError(f"Duolingo profile is missing a valid {field} value.")
@@ -42,55 +50,101 @@ def fetch_profile(username: str) -> dict[str, Any]:
     return profile
 
 
-def create_card(profile: dict[str, Any]) -> str:
-    """Render a compact, dark-mode-friendly SVG profile card."""
-    username = escape(str(profile["username"]))
-    streak = f'{profile["streak"]:,}'
-    total_xp = f'{profile["totalXp"]:,}'
-    course_names = [
-        str(course["title"])
-        for course in profile["courses"]
-        if isinstance(course, dict) and course.get("title")
-    ]
-    course_count = len(course_names)
-    course_summary = " · ".join(course_names) if course_names else "No courses listed"
-    if len(course_summary) > 58:
-        course_summary = course_summary[:55].rstrip() + "..."
-    course_summary = escape(course_summary)
+def compact_xp(value: int) -> str:
+    """Format large XP values to fit the narrow stat card."""
+    if value < 1_000:
+        return f"{value:,}"
+    compact = f"{value / 1_000:.1f}".rstrip("0").rstrip(".")
+    return f"{compact}k"
 
-    return f"""<svg xmlns="http://www.w3.org/2000/svg" width="760" height="248" viewBox="0 0 760 248" role="img" aria-labelledby="title description">
-  <title id="title">Duolingo progress for {username}</title>
-  <desc id="description">{streak} day streak, {total_xp} total XP, and {course_count} courses.</desc>
-  <defs>
-    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#10241c"/>
-      <stop offset="1" stop-color="#101820"/>
-    </linearGradient>
-    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#a5ed38"/>
-      <stop offset="1" stop-color="#58cc02"/>
-    </linearGradient>
-  </defs>
-  <rect x="1" y="1" width="758" height="246" rx="22" fill="url(#background)" stroke="#2d4438" stroke-width="2"/>
-  <circle cx="76" cy="79" r="37" fill="url(#accent)"/>
-  <path d="M66 98V60h22c13 0 20 7 20 19s-7 19-20 19H66zm12-10h9c6 0 9-3 9-9s-3-9-9-9h-9v18z" fill="#12351d"/>
-  <text x="132" y="60" fill="#a5ed38" font-family="Segoe UI,Arial,sans-serif" font-size="13" font-weight="700" letter-spacing="2">DUOLINGO PROGRESS</text>
-  <text x="132" y="88" fill="#f3f7f4" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="700">@{username}</text>
-  <line x1="132" y1="108" x2="718" y2="108" stroke="#304238"/>
-  <line x1="330" y1="126" x2="330" y2="195" stroke="#304238"/>
-  <line x1="527" y1="126" x2="527" y2="195" stroke="#304238"/>
-  <g font-family="Segoe UI,Arial,sans-serif">
-    <text x="150" y="148" fill="#a5ed38" font-size="30" font-weight="700">{streak}</text>
-    <text x="150" y="174" fill="#9aaca1" font-size="12" font-weight="700" letter-spacing="1.5">DAY STREAK</text>
-    <text x="360" y="148" fill="#f3f7f4" font-size="30" font-weight="700">{total_xp}</text>
-    <text x="360" y="174" fill="#9aaca1" font-size="12" font-weight="700" letter-spacing="1.5">TOTAL XP</text>
-    <text x="557" y="148" fill="#f3f7f4" font-size="30" font-weight="700">{course_count}</text>
-    <text x="557" y="174" fill="#9aaca1" font-size="12" font-weight="700" letter-spacing="1.5">COURSES</text>
-  </g>
-  <circle cx="43" cy="218" r="4" fill="#58cc02"/>
-  <text x="56" y="223" fill="#c6d2ca" font-family="Segoe UI,Arial,sans-serif" font-size="13">{course_summary}</text>
-</svg>
-"""
+
+def create_course_chips(courses: list[dict[str, Any]]) -> str:
+    """Fill the three course-chip slots in the SVG design."""
+    slots = (
+        (215, 86, 258, "#58cc02"),
+        (309, 92, 355, "#1cb0f6"),
+        (409, 80, 449, "#ce82ff"),
+    )
+    chips = []
+    for course, (x, width, center, color) in zip(courses[:3], slots):
+        title = str(course["title"])
+        label = title if len(title) <= 12 else f"{title[:9].rstrip()}…"
+        chips.append(
+            f'<rect x="{x}" y="112" width="{width}" height="28" rx="14" fill="{color}"/>'
+            f'<text class="chip" x="{center}" y="131" text-anchor="middle" '
+            f'textLength="{width - 12}" lengthAdjust="spacingAndGlyphs">'
+            f"<title>{escape(title)}</title>{escape(label)}</text>"
+        )
+    return "\n    ".join(chips)
+
+
+def create_card(profile: dict[str, Any]) -> str:
+    """Fill the template with live values without changing its visual design."""
+    if not TEMPLATE_PATH.is_file():
+        raise FileNotFoundError(f"Duolingo SVG template not found: {TEMPLATE_PATH}")
+
+    username = str(profile["username"])
+    name = str(profile.get("name") or username)
+    courses = [
+        course
+        for course in profile["courses"]
+        if isinstance(course, dict) and isinstance(course.get("title"), str)
+    ]
+    english_course = next(
+        (
+            course
+            for course in courses
+            if str(course.get("learningLanguage", "")).casefold() == "en"
+            or str(course["title"]).casefold() == "english"
+        ),
+        None,
+    )
+    english_xp_value = english_course.get("xp", 0) if english_course else 0
+    if (
+        not isinstance(english_xp_value, int)
+        or isinstance(english_xp_value, bool)
+        or english_xp_value < 0
+    ):
+        raise RuntimeError("Duolingo profile has an invalid English course XP value.")
+
+    total_xp = profile["totalXp"]
+    english_share = round(english_xp_value / total_xp * 100) if total_xp else 0
+    english_bar_width = (
+        min(561, max(0, english_xp_value / total_xp * 561)) if total_xp else 0
+    )
+    joined = datetime.fromtimestamp(profile["creationDate"], timezone.utc).strftime(
+        "%b %Y"
+    )
+
+    template = TEMPLATE_PATH.read_text(encoding="utf-8")
+    chips_match = COURSE_CHIPS_PATTERN.search(template)
+    if not chips_match:
+        raise ValueError("Duolingo SVG template is missing its course-chip markers.")
+    template = COURSE_CHIPS_PATTERN.sub(
+        lambda _: create_course_chips(courses), template, count=1
+    )
+
+    replacements = {
+        "__NAME__": escape(name),
+        "__USERNAME__": escape(username),
+        "__JOINED__": joined,
+        "__ENGLISH_XP__": f"{english_xp_value:,}",
+        "__ENGLISH_SHARE__": str(english_share),
+        "__ENGLISH_BAR_WIDTH__": f"{english_bar_width:.1f}",
+        "__STREAK__": f'{profile["streak"]:,}',
+        "__TOTAL_XP_SHORT__": compact_xp(total_xp),
+    }
+    for placeholder, value in replacements.items():
+        template = template.replace(placeholder, value)
+
+    if re.search(r"__[A-Z0-9_]+__", template):
+        raise ValueError("Duolingo SVG template contains an unfilled placeholder.")
+
+    template, metadata_count = SIGNED_METADATA_PATTERN.subn("", template, count=1)
+    if metadata_count:
+        template = re.sub(r'\s+xmlns:c2pa="[^"]+"', "", template, count=1)
+
+    return template
 
 
 def main() -> None:
@@ -99,9 +153,10 @@ def main() -> None:
         raise RuntimeError("DUOLINGO_USERNAME must be set.")
 
     profile = fetch_profile(username)
+    card = create_card(profile)
     OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)
-    OUTPUT_PATH.write_text(create_card(profile), encoding="utf-8")
-    print(f"Generated {OUTPUT_PATH} for {username}.")
+    OUTPUT_PATH.write_text(card, encoding="utf-8")
+    print(f"Generated {OUTPUT_PATH} for {username} from {TEMPLATE_PATH}.")
 
 
 if __name__ == "__main__":
