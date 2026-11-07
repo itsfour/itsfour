@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import html
 import os
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
@@ -59,11 +60,37 @@ def get_recent_events(limit: int = 25) -> list[str]:
         icon, description, target_url = _describe_event(event_type, payload, repo_url)
         if not description:
             continue
+        created_at = event.get("created_at")
+        if not isinstance(created_at, str):
+            raise ValueError("GitHub activity event is missing its creation time.")
+        happened_at = datetime.fromisoformat(created_at.replace("Z", "+00:00"))
+        time_label = _format_relative_time(happened_at)
         line = f"{len(activity_lines) + 1}. {icon} {description} in [{html.escape(repo_name)}]({repo_url})"
         if target_url:
             line += f" ([view]({html.escape(target_url)}))"
+        line += f" <sub>· {time_label}</sub>"
         activity_lines.append(line)
     return activity_lines
+
+
+def _format_relative_time(happened_at: datetime) -> str:
+    """Format an event time as a short relative label, falling back to its date."""
+    if happened_at.tzinfo is None:
+        raise ValueError("GitHub activity event time must include a timezone.")
+
+    elapsed = max(
+        0,
+        int((datetime.now(timezone.utc) - happened_at.astimezone(timezone.utc)).total_seconds()),
+    )
+    if elapsed < 60:
+        return "just now"
+    if elapsed < 3600:
+        return f"{elapsed // 60}m ago"
+    if elapsed < 86400:
+        return f"{elapsed // 3600}h ago"
+    if elapsed < 7 * 86400:
+        return f"{elapsed // 86400}d ago"
+    return happened_at.astimezone(timezone.utc).strftime("%b %d, %Y UTC")
 
 
 def _describe_event(

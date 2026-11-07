@@ -9,14 +9,14 @@
 
 </div>
 <div align="center">
-  <h3>Hi, I'm itsfour 👋</h3>
+  <h3>  hi, minh la thien tu 👋</h3>
   <img src="./generated/itsfour.svg" width="420" alt="itsfour animated neon logo">
   <p>
     <a href="https://github.com/itsfour">
-      <img src="https://img.shields.io/badge/GitHub-itsfour-181717?style=for-the-badge&logo=github" alt="GitHub profile">
+      <img src="https://img.shields.io/badge/GitHub-itsfour-181717?style=for-the-badge&logo=github&logoColor=red" alt="GitHub profile">
     </a>
-    <a href="https://osu.ppy.sh/users/Four">
-      <img src="https://img.shields.io/badge/osu!-Four-FF66AA?style=for-the-badge&logo=osu!&logoColor=white" alt="osu! profile">
+    <a href="https://www.duolingo.com/profile/its.four_">
+      <img src="https://img.shields.io/badge/Duolingo-its.four-99ffd3?style=for-the-badge&logo=duolingo&logoColor=lightgreen" alt="duolingo ! profile">
     </a>
   </p>
 </div>
@@ -26,10 +26,14 @@
 <img src="./generated/overview.svg"><img src="./generated/languages.svg">
 </div>
 
-## 🕘 Recent activity
+<div align="center">
+  <h2>🕘 Recent activity</h2>
+  <p>A little timeline of what I've been building lately.</p>
+  <img src="https://img.shields.io/badge/GitHub-activity-58cc02?style=for-the-badge&logo=github&logoColor=white" alt="GitHub activity">
+</div>
 
 <details>
-  <summary>Show latest public GitHub activity</summary>
+  <summary>✨ Open my latest public activity</summary>
 
 <!--START_SECTION:activity-->
 1. 📦 Pushed [`14ca528`](https://github.com/itsfour/itsfour.github.io/commit/14ca5282277878cb10dcf75fdf10558caf38dc58) to [`main`] in [itsfour/itsfour.github.io](https://github.com/itsfour/itsfour.github.io)
@@ -58,4 +62,6 @@
 24. 📦 Pushed [`0c7b0da`](https://github.com/itsfour/Modified-APK/commit/0c7b0da9d3597e26c911e938477f3d686ef7d26b) to [`main`] in [itsfour/Modified-APK](https://github.com/itsfour/Modified-APK)
 25. 📦 Pushed [`7cfc2fa`](https://github.com/itsfour/Modified-APK/commit/7cfc2fa0670b39fd6c6221c8b7aaa4cd14702b19) to [`main`] in [itsfour/Modified-APK](https://github.com/itsfour/Modified-APK)
 <!--END_SECTION:activity-->
+
+  <p align="right"><sub>Thanks for stopping by ✨</sub></p>
 </details>
