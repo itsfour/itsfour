@@ -103,11 +103,11 @@
 
   <!-- Daily goal progress -->
   <text class="goal" x="215" y="182">ENGLISH COURSE XP</text>
-  <text class="goal" x="776" y="182" text-anchor="end" style="fill:#8a9aa3">39,179 XP · 64% OF TOTAL</text>
+  <text class="goal" x="776" y="182" text-anchor="end" style="fill:#8a9aa3">39,737 XP · 64% OF TOTAL</text>
   <rect x="215" y="192" width="561" height="16" rx="8" fill="#2a3b44"/>
   <g>
     <rect x="215" y="192" width="0" height="16" rx="8" fill="url(#bar)">
-      <animate attributeName="width" values="0;361.3;361.3" keyTimes="0;0.35;1" dur="6s" repeatCount="indefinite" calcMode="spline" keySplines=".2 .8 .2 1;0 0 1 1"/>
+      <animate attributeName="width" values="0;357.7;357.7" keyTimes="0;0.35;1" dur="6s" repeatCount="indefinite" calcMode="spline" keySplines=".2 .8 .2 1;0 0 1 1"/>
     </rect>
     <rect x="215" y="192" width="561" height="16" rx="8" fill="none"/>
   </g>
@@ -130,7 +130,7 @@
     <g class="bolt">
       <path d="M654 54 L634 90 H648 L643 112 L666 74 H651z" fill="#ffc800"/>
     </g>
-    <text class="num" x="649" y="130" text-anchor="middle" fill="#ffc800">60.8k</text>
+    <text class="num" x="649" y="130" text-anchor="middle" fill="#ffc800">62.3k</text>
     <text class="label" x="649" y="148" text-anchor="middle">TOTAL XP</text>
   </g>
 
