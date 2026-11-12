@@ -98,16 +98,16 @@
   <text class="name" x="215" y="70" textLength="280" lengthAdjust="spacingAndGlyphs">Phạm Huyền Thiên Tứ</text>
   <text class="user" x="215" y="95">@its.four_  ·  Joined Jul 2026</text>
 
-  <rect x="215" y="112" width="86" height="28" rx="14" fill="#58cc02"/><text class="chip" x="258" y="131" text-anchor="middle" textLength="74" lengthAdjust="spacingAndGlyphs"><title>Chinese (Simplified)</title>Chinese (…</text>
-    <rect x="309" y="112" width="92" height="28" rx="14" fill="#1cb0f6"/><text class="chip" x="355" y="131" text-anchor="middle" textLength="80" lengthAdjust="spacingAndGlyphs"><title>English</title>English</text>
+  <rect x="215" y="112" width="86" height="28" rx="14" fill="#58cc02"/><text class="chip" x="258" y="131" text-anchor="middle" textLength="74" lengthAdjust="spacingAndGlyphs"><title>English</title>English</text>
+    <rect x="309" y="112" width="92" height="28" rx="14" fill="#1cb0f6"/><text class="chip" x="355" y="131" text-anchor="middle" textLength="80" lengthAdjust="spacingAndGlyphs"><title>Chinese (Simplified)</title>Chinese (…</text>
 
   <!-- Daily goal progress -->
   <text class="goal" x="215" y="182">ENGLISH COURSE XP</text>
-  <text class="goal" x="776" y="182" text-anchor="end" style="fill:#8a9aa3">39,737 XP · 62% OF TOTAL</text>
+  <text class="goal" x="776" y="182" text-anchor="end" style="fill:#8a9aa3">39,877 XP · 61% OF TOTAL</text>
   <rect x="215" y="192" width="561" height="16" rx="8" fill="#2a3b44"/>
   <g>
     <rect x="215" y="192" width="0" height="16" rx="8" fill="url(#bar)">
-      <animate attributeName="width" values="0;348.1;348.1" keyTimes="0;0.35;1" dur="6s" repeatCount="indefinite" calcMode="spline" keySplines=".2 .8 .2 1;0 0 1 1"/>
+      <animate attributeName="width" values="0;343.2;343.2" keyTimes="0;0.35;1" dur="6s" repeatCount="indefinite" calcMode="spline" keySplines=".2 .8 .2 1;0 0 1 1"/>
     </rect>
     <rect x="215" y="192" width="561" height="16" rx="8" fill="none"/>
   </g>
@@ -120,7 +120,7 @@
       <path d="M561 52 C 574 66 582 74 582 88 A 21 21 0 0 1 540 88 C 540 80 545 74 549 70 C 549 78 553 80 556 80 C 554 68 556 60 561 52z" fill="#ff9600"/>
       <path d="M561 76 C 569 84 572 88 572 94 A 11 11 0 0 1 550 94 C 550 90 553 86 556 84 C 557 88 559 88 560 88 C 559 83 560 80 561 76z" fill="#ffd34d"/>
     </g>
-    <text class="num" x="561" y="130" text-anchor="middle" fill="#ff9600">336</text>
+    <text class="num" x="561" y="130" text-anchor="middle" fill="#ff9600">337</text>
     <text class="label" x="561" y="148" text-anchor="middle">STREAK</text>
   </g>
 
@@ -130,7 +130,7 @@
     <g class="bolt">
       <path d="M654 54 L634 90 H648 L643 112 L666 74 H651z" fill="#ffc800"/>
     </g>
-    <text class="num" x="649" y="130" text-anchor="middle" fill="#ffc800">64k</text>
+    <text class="num" x="649" y="130" text-anchor="middle" fill="#ffc800">65.2k</text>
     <text class="label" x="649" y="148" text-anchor="middle">TOTAL XP</text>
   </g>
 
